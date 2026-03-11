@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Temperature Control System</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌡️ Smart Temperature Control System</h1>
+            <p>IoT Fuzzy Logic Monitoring Dashboard</p>
+        </header>
+
+        <section class="gauge-section">
+            <div class="card gauge-card">
+                <h3>🌡️ Suhu (°C)</h3>
+                <div class="canvas-holder">
+                    <canvas id="tempGauge"></canvas>
+                </div>
+                <div class="gauge-value"><span id="suhu-text">0</span> °C</div>
+                <div class="status-badge" id="status-val">LOADING</div>
+            </div>
+            
+            <div class="card gauge-card">
+                <h3>🌀 Kecepatan Kipas (%)</h3>
+                <div class="canvas-holder">
+                    <canvas id="pwmGauge"></canvas>
+                </div>
+                <div class="gauge-value"><span id="pwm-text">0</span> %</div>
+                <div class="status-badge" id="speed-val">SPEED: OFF</div>
+            </div>
+
+            <div class="card gauge-card">
+                <h3>💧 Kelembapan (%)</h3>
+                <div class="canvas-holder">
+                    <canvas id="humGauge"></canvas>
+                </div>
+                <div class="gauge-value"><span id="hum-text">0</span> %</div>
+            </div>
+        </section>
+
+        <section class="card history-section">
+            <h2>📈 Grafik Riwayat Suhu</h2>
+            <div class="line-chart-holder">
+                <canvas id="tempHistoryChart"></canvas>
+            </div>
+        </section>
+
+        <section class="settings-panel">
+            <h2>⚙️ Fuzzy Temperature Control Settings</h2>
+            <form id="fuzzy-form">
+                <div class="input-group">
+                    <label for="batas-dingin">Batas Dingin Maksimal (°C):</label>
+                    <input type="number" id="batas-dingin" step="0.1" required>
+                </div>
+                <div class="input-group">
+                    <label for="batas-normal">Titik Tengah Normal (°C):</label>
+                    <input type="number" id="batas-normal" step="0.1" required>
+                </div>
+                <div class="input-group">
+                    <label for="batas-panas">Batas Panas Minimal (°C):</label>
+                    <input type="number" id="batas-panas" step="0.1" required>
+                </div>
+                <button type="submit" id="save-btn">Simpan Pengaturan</button>
+                <div id="alert-msg" class="hidden">Pengaturan berhasil disimpan ke Cloud!</div>
+            </form>
+        </section>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>
